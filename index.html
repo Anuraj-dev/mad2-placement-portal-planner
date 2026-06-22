@@ -90,11 +90,10 @@
                   </div>
                 </div>
                 <ol class="workflow-list mb-0">
-                  <li>Open <code>progress.json</code>.</li>
-                  <li>Move finished work into <code>done_tasks</code>.</li>
-                  <li>Adjust <code>pending_tasks</code>, <code>blockers</code>, and <code>percent</code>.</li>
-                  <li>Update milestone percentages if a checkpoint is complete.</li>
-                  <li>Commit and push so the Vercel page reflects the new state.</li>
+                  <li>Tick task checkboxes directly on the page. They persist in this browser using <code>localStorage</code>.</li>
+                  <li>Use the reset button on a day card if you want to clear that day’s checklist.</li>
+                  <li>Update <code>progress.json</code> when you want the shared repo version to reflect real progress.</li>
+                  <li>Commit and push after updating <code>progress.json</code> so the Vercel copy matches your tracked work.</li>
                 </ol>
               </div>
             </div>
@@ -140,6 +139,14 @@
                 <p class="section-kicker mb-1">Risk Log</p>
                 <h3 class="subsection-title">Scope Guardrails</h3>
                 <div id="risks-list" class="stack-list"></div>
+              </div>
+            </div>
+            <div class="card planner-card mt-4">
+              <div class="card-body">
+                <p class="section-kicker mb-1">Tracker Mode</p>
+                <h3 class="subsection-title">How it Works</h3>
+                <p class="mb-2">Checkbox progress is saved only in your current browser on this device.</p>
+                <p class="mb-0">To make progress visible on GitHub or Vercel for every device, update <code>progress.json</code> and push it.</p>
               </div>
             </div>
           </div>

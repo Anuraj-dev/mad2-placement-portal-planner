@@ -306,6 +306,49 @@ code {
   margin-top: 0.85rem;
 }
 
+.checklist {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.checklist-item input {
+  margin-top: 0.2rem;
+}
+
+.checklist-item label {
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.checklist-item.is-checked label {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.day-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.tracker-note {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
 .day-block h4,
 .model-card h3,
 .api-card h3,

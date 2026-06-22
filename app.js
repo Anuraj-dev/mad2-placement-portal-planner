@@ -9,15 +9,80 @@ function labelize(status) {
   return status.replaceAll("_", " ").replace(/\b\w/g, (ch) => ch.toUpperCase());
 }
 
+const STORAGE_KEY = "placement-planner-progress-v1";
+
+function readProgressState() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function writeProgressState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function getDayState(dayNumber) {
+  const state = readProgressState();
+  return state[`day-${dayNumber}`] || {};
+}
+
+function setTaskState(dayNumber, taskIndex, checked) {
+  const state = readProgressState();
+  const key = `day-${dayNumber}`;
+  const current = state[key] || { checkedTasks: {} };
+  current.checkedTasks = current.checkedTasks || {};
+  current.checkedTasks[String(taskIndex)] = checked;
+  state[key] = current;
+  writeProgressState(state);
+}
+
+function resetDayState(dayNumber) {
+  const state = readProgressState();
+  delete state[`day-${dayNumber}`];
+  writeProgressState(state);
+}
+
+function computeDayProgress(day) {
+  const stored = getDayState(day.day);
+  const checkedTasks = stored.checkedTasks || {};
+  const total = day.planned_tasks.length;
+  const completed = day.planned_tasks.filter((_, index) => checkedTasks[String(index)]).length;
+  const percent = total ? Math.round((completed / total) * 100) : day.percent;
+  let status = "not_started";
+  if (completed === total && total > 0) {
+    status = "done";
+  } else if (completed > 0) {
+    status = "in_progress";
+  }
+  if (day.status === "blocked") {
+    status = "blocked";
+  }
+  return { completed, total, percent, status };
+}
+
+function computeOverallProgress(days) {
+  const totals = days.reduce((acc, day) => {
+    const progress = computeDayProgress(day);
+    acc.completed += progress.completed;
+    acc.total += progress.total;
+    return acc;
+  }, { completed: 0, total: 0 });
+
+  return totals.total ? Math.round((totals.completed / totals.total) * 100) : 0;
+}
+
 function renderSummary(project, days, milestones) {
   document.getElementById("current-focus").textContent = project.current_focus;
-  document.getElementById("overall-percent").textContent = `${project.overall_percent}%`;
+  const livePercent = computeOverallProgress(days);
+  document.getElementById("overall-percent").textContent = `${livePercent}%`;
 
   const bar = document.getElementById("overall-progress-bar");
-  bar.style.width = `${project.overall_percent}%`;
-  bar.textContent = `${project.overall_percent}%`;
+  bar.style.width = `${livePercent}%`;
+  bar.textContent = `${livePercent}%`;
 
-  const completedDays = days.filter((day) => day.status === "done").length;
+  const completedDays = days.filter((day) => computeDayProgress(day).status === "done").length;
   const blockedCount = days.filter((day) => day.status === "blocked").length;
   const activeMilestone = milestones.find((milestone) => milestone.status === "in_progress")?.name || "Not started";
 
@@ -90,18 +155,35 @@ function renderDays(days) {
           <h3 class="subsection-title mb-1">${day.focus}</h3>
           <div class="day-date">${day.date} · ${day.deliverable}</div>
         </div>
-        <span class="${badgeClass(day.status)}">${labelize(day.status)}</span>
+        <span class="${badgeClass(computeDayProgress(day).status)}">${labelize(computeDayProgress(day).status)}</span>
       </header>
       <div class="metric-row">
         <span>${day.mapped_milestone}</span>
-        <strong>${day.percent}%</strong>
+        <strong>${computeDayProgress(day).percent}%</strong>
       </div>
       <div class="progress tiny-progress" role="progressbar" aria-label="Day progress">
-        <div class="progress-bar" style="width: ${day.percent}%"></div>
+        <div class="progress-bar" style="width: ${computeDayProgress(day).percent}%"></div>
       </div>
       <div class="day-block">
         <h4>Planned</h4>
-        <ul>${day.planned_tasks.map((task) => `<li>${task}</li>`).join("")}</ul>
+        <div class="checklist">
+          ${day.planned_tasks.map((task, index) => {
+            const checked = Boolean((getDayState(day.day).checkedTasks || {})[String(index)]);
+            return `
+              <div class="checklist-item ${checked ? "is-checked" : ""}">
+                <input
+                  class="form-check-input day-task"
+                  type="checkbox"
+                  id="day-${day.day}-task-${index}"
+                  data-day="${day.day}"
+                  data-task-index="${index}"
+                  ${checked ? "checked" : ""}
+                >
+                <label for="day-${day.day}-task-${index}">${task}</label>
+              </div>
+            `;
+          }).join("")}
+        </div>
       </div>
       <div class="day-block">
         <h4>Done</h4>
@@ -114,6 +196,10 @@ function renderDays(days) {
       <div class="day-block">
         <h4>Blockers</h4>
         <ul>${day.blockers.length ? day.blockers.map((task) => `<li>${task}</li>`).join("") : "<li>No blockers logged.</li>"}</ul>
+      </div>
+      <div class="day-actions">
+        <span class="tracker-note">Local browser checklist for this day.</span>
+        <button class="btn btn-sm btn-outline-secondary reset-day" data-day="${day.day}">Reset day</button>
       </div>
     </article>
   `).join("");
@@ -199,6 +285,38 @@ function renderAcceptance(items) {
   `).join("");
 }
 
+function bindTrackerEvents(data) {
+  document.querySelectorAll(".day-task").forEach((checkbox) => {
+    checkbox.addEventListener("change", (event) => {
+      const dayNumber = Number(event.target.dataset.day);
+      const taskIndex = Number(event.target.dataset.taskIndex);
+      setTaskState(dayNumber, taskIndex, event.target.checked);
+      rerender(data);
+    });
+  });
+
+  document.querySelectorAll(".reset-day").forEach((button) => {
+    button.addEventListener("click", () => {
+      resetDayState(Number(button.dataset.day));
+      rerender(data);
+    });
+  });
+}
+
+function rerender(data) {
+  renderSummary(data.project, data.days, data.milestones);
+  renderProjectSummary(data.project);
+  renderWeeks(data.weeks);
+  renderDays(data.days);
+  renderMilestones(data.milestones);
+  renderRisks(data.risks);
+  renderArchitecture(data.architecture);
+  renderModels(data.models);
+  renderApi(data.api_groups);
+  renderAcceptance(data.acceptance_checks);
+  bindTrackerEvents(data);
+}
+
 async function main() {
   try {
     const response = await fetch("progress.json", { cache: "no-store" });
@@ -207,16 +325,7 @@ async function main() {
     }
 
     const data = await response.json();
-    renderSummary(data.project, data.days, data.milestones);
-    renderProjectSummary(data.project);
-    renderWeeks(data.weeks);
-    renderDays(data.days);
-    renderMilestones(data.milestones);
-    renderRisks(data.risks);
-    renderArchitecture(data.architecture);
-    renderModels(data.models);
-    renderApi(data.api_groups);
-    renderAcceptance(data.acceptance_checks);
+    rerender(data);
   } catch (error) {
     document.getElementById("project-summary").innerHTML = `
       <div class="summary-panel">
