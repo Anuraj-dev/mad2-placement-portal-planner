@@ -1,0 +1,35 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#FCFAF5"/>
+  <rect x="44" y="44" width="1112" height="632" rx="28" fill="#F1EBDD" stroke="#D8CFBF" stroke-width="2"/>
+  <rect x="92" y="88" width="488" height="120" rx="20" fill="#FFFDF8" stroke="#D8CFBF" stroke-width="2"/>
+  <rect x="620" y="88" width="488" height="120" rx="20" fill="#175C4C"/>
+  <rect x="92" y="240" width="320" height="176" rx="20" fill="#FFFDF8" stroke="#D8CFBF" stroke-width="2"/>
+  <rect x="440" y="240" width="320" height="176" rx="20" fill="#FFFDF8" stroke="#D8CFBF" stroke-width="2"/>
+  <rect x="788" y="240" width="320" height="176" rx="20" fill="#FFFDF8" stroke="#D8CFBF" stroke-width="2"/>
+  <rect x="92" y="444" width="1016" height="184" rx="20" fill="#FFFDF8" stroke="#D8CFBF" stroke-width="2"/>
+  <rect x="128" y="124" width="180" height="18" rx="9" fill="#175C4C" fill-opacity="0.15"/>
+  <rect x="128" y="156" width="392" height="16" rx="8" fill="#E8E1D3"/>
+  <rect x="650" y="128" width="250" height="14" rx="7" fill="#BFE0D7"/>
+  <rect x="650" y="158" width="404" height="20" rx="10" fill="#FFFDF8" fill-opacity="0.24"/>
+  <rect x="128" y="276" width="160" height="16" rx="8" fill="#E4DDD0"/>
+  <rect x="128" y="306" width="248" height="58" rx="14" fill="#175C4C" fill-opacity="0.08"/>
+  <rect x="476" y="276" width="162" height="16" rx="8" fill="#E4DDD0"/>
+  <rect x="476" y="306" width="248" height="18" rx="9" fill="#175C4C" fill-opacity="0.16"/>
+  <rect x="476" y="338" width="248" height="18" rx="9" fill="#E7E0D4"/>
+  <rect x="476" y="370" width="180" height="18" rx="9" fill="#E7E0D4"/>
+  <rect x="824" y="276" width="188" height="16" rx="8" fill="#E4DDD0"/>
+  <rect x="824" y="306" width="248" height="18" rx="9" fill="#E7E0D4"/>
+  <rect x="824" y="338" width="248" height="18" rx="9" fill="#175C4C" fill-opacity="0.14"/>
+  <rect x="824" y="370" width="214" height="18" rx="9" fill="#E7E0D4"/>
+  <rect x="128" y="482" width="236" height="18" rx="9" fill="#E7E0D4"/>
+  <rect x="128" y="518" width="944" height="18" rx="9" fill="#E7E0D4"/>
+  <rect x="128" y="554" width="732" height="18" rx="9" fill="#175C4C" fill-opacity="0.12"/>
+  <rect x="128" y="590" width="540" height="18" rx="9" fill="#E7E0D4"/>
+  <circle cx="966" cy="535" r="42" fill="#175C4C"/>
+  <circle cx="1018" cy="535" r="42" fill="#2C8D73" fill-opacity="0.85"/>
+  <circle cx="1070" cy="535" r="42" fill="#C9E2DA"/>
+  <path d="M966 438L1018 474L1070 438" stroke="#175C4C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="128" y="140" fill="#175C4C" font-family="IBM Plex Sans, sans-serif" font-size="26" font-weight="700">Placement Portal Build Planner</text>
+  <text x="650" y="140" fill="#FFFDF8" font-family="IBM Plex Sans, sans-serif" font-size="22" font-weight="700">18-day execution map</text>
+  <text x="128" y="616" fill="#175C4C" font-family="IBM Plex Sans, sans-serif" font-size="28" font-weight="700">Timeline • Daily tracker • Models • API map • Milestones</text>
+</svg>

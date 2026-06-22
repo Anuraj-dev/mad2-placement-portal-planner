@@ -1,0 +1,900 @@
+{
+  "project": {
+    "title": "Placement Portal Application V2 Planner",
+    "subtitle": "Flask + Vue execution dashboard",
+    "status": "not_started",
+    "start_date": "2026-06-23",
+    "target_end_date": "2026-07-10",
+    "total_days": 18,
+    "current_day": 1,
+    "overall_percent": 0,
+    "current_focus": "Project setup and Vue ramp-up",
+    "goal": "Build all core requirements of the Placement Portal Application V2 using Flask, Vue SFCs, Bootstrap, SQLite, Redis, and Celery within a strict 2-3 week schedule while keeping the implementation viva-safe and locally demoable.",
+    "constraints": [
+      "Use Flask for API, Vue 3 SFCs for UI, Bootstrap for styling, SQLite for DB, Redis for cache and Celery broker.",
+      "Implement only core requirements before any optional features.",
+      "Keep the UI minimal and reproducible with Bootstrap components.",
+      "Prioritize local demo reliability over architectural cleverness."
+    ],
+    "success_criteria": [
+      "Admin, company, and student flows all work end-to-end.",
+      "Admin can approve companies and placement drives.",
+      "Students can apply only once and only when eligible.",
+      "CSV export, reminders, monthly reports, and Redis caching are demoable locally."
+    ]
+  },
+  "weeks": [
+    {
+      "id": "week-1",
+      "label": "Week 1",
+      "start_date": "2026-06-23",
+      "end_date": "2026-06-28",
+      "focus": "Foundation and auth",
+      "goal": "Remove setup risk and get the backend/frontend shells talking cleanly.",
+      "outputs": [
+        "Repo scaffold with Flask backend and Vue frontend.",
+        "Vue Router and Pinia basic flow understood in the real app.",
+        "Database schema created programmatically.",
+        "Seeded admin and working auth baseline."
+      ]
+    },
+    {
+      "id": "week-2",
+      "label": "Week 2",
+      "start_date": "2026-06-29",
+      "end_date": "2026-07-04",
+      "focus": "Core business flows",
+      "goal": "Complete the main admin, company, and student workflows.",
+      "outputs": [
+        "Admin dashboard, approvals, search, and deactivation.",
+        "Company drive creation and application review flows.",
+        "Student dashboard, drive browsing, and apply flow.",
+        "Status tracking and placement history."
+      ]
+    },
+    {
+      "id": "week-3",
+      "label": "Week 3",
+      "start_date": "2026-07-05",
+      "end_date": "2026-07-10",
+      "focus": "Async jobs, cache, and viva prep",
+      "goal": "Finish the operational requirements and harden the demo path.",
+      "outputs": [
+        "CSV export via Celery and Redis.",
+        "Reminder and monthly HTML report jobs.",
+        "Redis caching on read-heavy endpoints.",
+        "QA checklist, report assets, and demo rehearsal."
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-06-23",
+      "week": "week-1",
+      "focus": "Repo structure and local setup",
+      "planned_tasks": [
+        "Create backend and frontend folder skeletons.",
+        "Set up Python virtual environment and dependency lists.",
+        "Create Vue app with Vite and Bootstrap integration.",
+        "Write root README with run instructions."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Initialize app factory and starter Vue entry point.",
+        "Confirm Node and Python versions locally."
+      ],
+      "blockers": [],
+      "deliverable": "Project scaffold runs on both backend and frontend.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Milestone 0 and schema setup start"
+    },
+    {
+      "day": 2,
+      "date": "2026-06-24",
+      "week": "week-1",
+      "focus": "Vue basics inside the real project",
+      "planned_tasks": [
+        "Set up Vue Router.",
+        "Set up Pinia for auth/session state shell.",
+        "Create login and registration screen shells.",
+        "Learn form binding, router navigation, and API call flow in Vue."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Practice one mocked login flow before wiring real auth."
+      ],
+      "blockers": [],
+      "deliverable": "Vue shell navigates between auth screens.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Authentication and role access prep"
+    },
+    {
+      "day": 3,
+      "date": "2026-06-25",
+      "week": "week-1",
+      "focus": "Core SQLAlchemy models",
+      "planned_tasks": [
+        "Define Role and User models for unified auth.",
+        "Define StudentProfile and CompanyProfile models.",
+        "Define PlacementDrive, Application, PlacementRecord, and ExportRequest models.",
+        "Add status choices and unique constraints."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Write relationship notes for the report ER diagram."
+      ],
+      "blockers": [],
+      "deliverable": "All domain models exist with relationships.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Database models and schema"
+    },
+    {
+      "day": 4,
+      "date": "2026-06-26",
+      "week": "week-1",
+      "focus": "Database creation and seed workflow",
+      "planned_tasks": [
+        "Create DB initialization command.",
+        "Create admin seeding command.",
+        "Create upload and export directory conventions.",
+        "Write validation helpers for duplicate apply and eligibility."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Verify seed flow from empty SQLite database."
+      ],
+      "blockers": [],
+      "deliverable": "Fresh database can be created programmatically with admin ready.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Database models and schema"
+    },
+    {
+      "day": 5,
+      "date": "2026-06-27",
+      "week": "week-1",
+      "focus": "Auth backend and role guards",
+      "planned_tasks": [
+        "Configure Flask-Security-Too.",
+        "Build JSON login, logout, and current-user endpoints.",
+        "Add role-based route protection helpers.",
+        "Test admin login and protected API access."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Lock CSRF/session behavior for SPA requests."
+      ],
+      "blockers": [],
+      "deliverable": "Session-backed auth works from API side.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Authentication and role-based access"
+    },
+    {
+      "day": 6,
+      "date": "2026-06-28",
+      "week": "week-1",
+      "focus": "Student and company registration flows",
+      "planned_tasks": [
+        "Implement student registration endpoint and profile creation.",
+        "Implement company registration endpoint and profile creation.",
+        "Set company default approval to pending.",
+        "Add backend validation for required fields."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Return clean error messages for duplicate accounts."
+      ],
+      "blockers": [],
+      "deliverable": "Student and company accounts can self-register.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Authentication and role-based access"
+    },
+    {
+      "day": 7,
+      "date": "2026-06-29",
+      "week": "week-2",
+      "focus": "Vue auth integration",
+      "planned_tasks": [
+        "Wire login and registration forms to backend.",
+        "Restore session on refresh using current-user endpoint.",
+        "Add route guards for admin, company, and student views.",
+        "Redirect each role to its dashboard."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Show role-specific unauthorized states cleanly."
+      ],
+      "blockers": [],
+      "deliverable": "Frontend auth flow is end-to-end functional.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Authentication and role-based access"
+    },
+    {
+      "day": 8,
+      "date": "2026-06-30",
+      "week": "week-2",
+      "focus": "Admin dashboard statistics and search",
+      "planned_tasks": [
+        "Build admin dashboard stats endpoint.",
+        "Create admin dashboard summary cards and tables.",
+        "Implement company and student search.",
+        "List recent applications."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Keep UI simple with Bootstrap tables and cards."
+      ],
+      "blockers": [],
+      "deliverable": "Admin sees a useful dashboard and search UI.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Admin dashboard and management"
+    },
+    {
+      "day": 9,
+      "date": "2026-07-01",
+      "week": "week-2",
+      "focus": "Admin approvals and deactivation controls",
+      "planned_tasks": [
+        "Approve or reject companies.",
+        "Approve or reject placement drives.",
+        "Blacklist or deactivate users/companies without deleting history.",
+        "Block deactivated users from protected actions."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Verify drive restrictions after company blacklist."
+      ],
+      "blockers": [],
+      "deliverable": "Admin control layer is complete.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Admin dashboard and management"
+    },
+    {
+      "day": 10,
+      "date": "2026-07-02",
+      "week": "week-2",
+      "focus": "Company dashboard and profile",
+      "planned_tasks": [
+        "Build company profile view and edit endpoint.",
+        "Show current and closed drives.",
+        "Display applicant counts by drive.",
+        "Add create-drive entry point."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Keep unapproved companies out of dashboard actions."
+      ],
+      "blockers": [],
+      "deliverable": "Approved companies can access their workspace.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Company dashboard and management"
+    },
+    {
+      "day": 11,
+      "date": "2026-07-03",
+      "week": "week-2",
+      "focus": "Drive creation and approval lifecycle",
+      "planned_tasks": [
+        "Create drive form and validation.",
+        "Store eligibility criteria, deadline, location, and salary.",
+        "Set new drives to pending approval.",
+        "Show pending, approved, and closed states in UI."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Verify only approved drives become visible to students."
+      ],
+      "blockers": [],
+      "deliverable": "Drive lifecycle is enforced correctly.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Company dashboard and management"
+    },
+    {
+      "day": 12,
+      "date": "2026-07-04",
+      "week": "week-2",
+      "focus": "Student dashboard and drive discovery",
+      "planned_tasks": [
+        "Build student profile view and edit form.",
+        "List approved drives only.",
+        "Add basic search or filter by company and title.",
+        "Create drive detail page."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Display profile and history navigation clearly."
+      ],
+      "blockers": [],
+      "deliverable": "Student can browse and inspect available drives.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Student dashboard and application system"
+    },
+    {
+      "day": 13,
+      "date": "2026-07-05",
+      "week": "week-3",
+      "focus": "Apply flow and eligibility enforcement",
+      "planned_tasks": [
+        "Implement apply endpoint.",
+        "Prevent duplicate applications using DB constraint and validation.",
+        "Check branch, year, CGPA, and drive deadline before allowing apply.",
+        "Show meaningful student-facing errors."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Refresh applied drive status immediately after submit."
+      ],
+      "blockers": [],
+      "deliverable": "Student can apply once and only when eligible.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Job application history and status tracking"
+    },
+    {
+      "day": 14,
+      "date": "2026-07-06",
+      "week": "week-3",
+      "focus": "Application review and status management",
+      "planned_tasks": [
+        "List applicants for each drive on the company side.",
+        "Create student application detail view.",
+        "Allow shortlist, reject, interview schedule, and select updates.",
+        "Limit companies to their own drives."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Keep status badges consistent across all views."
+      ],
+      "blockers": [],
+      "deliverable": "Company can manage recruitment pipeline status.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Job application history and status tracking"
+    },
+    {
+      "day": 15,
+      "date": "2026-07-07",
+      "week": "week-3",
+      "focus": "Placement history and interview basics",
+      "planned_tasks": [
+        "Create placement record when an application becomes selected.",
+        "Show student application history page.",
+        "Display interview schedule fields where available.",
+        "Expose admin and student views of historical records."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Ensure no record duplication when status changes repeatedly."
+      ],
+      "blockers": [],
+      "deliverable": "History and final placement record flow works.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Job application history and status tracking"
+    },
+    {
+      "day": 16,
+      "date": "2026-07-08",
+      "week": "week-3",
+      "focus": "CSV export async job",
+      "planned_tasks": [
+        "Set up Redis, Celery worker, and task registration.",
+        "Add export request model usage.",
+        "Generate student application history CSV asynchronously.",
+        "Expose export status and download path."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Verify job execution from local machine end-to-end."
+      ],
+      "blockers": [],
+      "deliverable": "Student-triggered export is demoable.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Backend jobs and async processing"
+    },
+    {
+      "day": 17,
+      "date": "2026-07-09",
+      "week": "week-3",
+      "focus": "Scheduled reminders and monthly reports",
+      "planned_tasks": [
+        "Add daily reminder task for upcoming deadlines or interviews.",
+        "Add monthly HTML report generation for admin.",
+        "Wire local email sending strategy.",
+        "Add clear sample data for demo."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Keep report HTML plain and dependable rather than fancy."
+      ],
+      "blockers": [],
+      "deliverable": "Scheduled jobs are visible and defensible in viva.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Backend jobs and async processing"
+    },
+    {
+      "day": 18,
+      "date": "2026-07-10",
+      "week": "week-3",
+      "focus": "Caching, QA, and submission prep",
+      "planned_tasks": [
+        "Add Redis caching for approved drives, admin stats, and search-heavy endpoints.",
+        "Invalidate caches on write actions.",
+        "Run end-to-end manual test checklist.",
+        "Collect screenshots, ER diagram notes, API list, and demo script."
+      ],
+      "done_tasks": [],
+      "pending_tasks": [
+        "Prepare final report and video capture checklist."
+      ],
+      "blockers": [],
+      "deliverable": "Core build is stable and submission-ready.",
+      "status": "not_started",
+      "percent": 0,
+      "mapped_milestone": "Caching and final hardening"
+    }
+  ],
+  "milestones": [
+    {
+      "name": "Milestone 0: Repo setup",
+      "required": true,
+      "planned_days": "Day 1",
+      "status": "not_started",
+      "percent": 0
+    },
+    {
+      "name": "Database models and schema",
+      "required": true,
+      "planned_days": "Days 3-4",
+      "status": "not_started",
+      "percent": 0
+    },
+    {
+      "name": "Authentication and role-based access",
+      "required": true,
+      "planned_days": "Days 2, 5-7",
+      "status": "not_started",
+      "percent": 0
+    },
+    {
+      "name": "Admin dashboard and management",
+      "required": true,
+      "planned_days": "Days 8-9",
+      "status": "not_started",
+      "percent": 0
+    },
+    {
+      "name": "Company dashboard and drive management",
+      "required": true,
+      "planned_days": "Days 10-11",
+      "status": "not_started",
+      "percent": 0
+    },
+    {
+      "name": "Student dashboard and application system",
+      "required": true,
+      "planned_days": "Days 12-13",
+      "status": "not_started",
+      "percent": 0
+    },
+    {
+      "name": "Application history and status tracking",
+      "required": true,
+      "planned_days": "Days 14-15",
+      "status": "not_started",
+      "percent": 0
+    },
+    {
+      "name": "Backend jobs and async processing",
+      "required": true,
+      "planned_days": "Days 16-17",
+      "status": "not_started",
+      "percent": 0
+    },
+    {
+      "name": "Caching and hardening",
+      "required": true,
+      "planned_days": "Day 18",
+      "status": "not_started",
+      "percent": 0
+    }
+  ],
+  "risks": [
+    {
+      "title": "Vue learning curve",
+      "impact": "Can slow the first week and delay auth wiring.",
+      "mitigation": "Learn Router, Pinia, forms, and API calls only; skip advanced Vue patterns."
+    },
+    {
+      "title": "Auth integration drift",
+      "impact": "Frontend can stall if Flask-Security and SPA requests are not aligned early.",
+      "mitigation": "Finish login, me, logout, and route guards before admin/company/student dashboard work."
+    },
+    {
+      "title": "Celery and Redis late failure",
+      "impact": "Async jobs can consume too much end-stage time.",
+      "mitigation": "Keep exports and report HTML minimal, prove one clean end-to-end task first, then extend."
+    },
+    {
+      "title": "Scope creep",
+      "impact": "Optional features can break the core completion target.",
+      "mitigation": "Do not start charts, ATS, PWA, or fancy UI until all core flows are stable."
+    }
+  ],
+  "architecture": [
+    {
+      "title": "Backend",
+      "summary": "Flask API with app factory and SQLAlchemy models.",
+      "points": [
+        "Use blueprints grouped by auth, admin, company, student, and public.",
+        "Use programmatic DB creation and one seeded admin account.",
+        "Keep responses JSON-only for the Vue SPA."
+      ]
+    },
+    {
+      "title": "Frontend",
+      "summary": "Vue 3 with Vite, Router, Pinia, and Bootstrap.",
+      "points": [
+        "Use SFC pages for auth and role dashboards.",
+        "Keep state management limited to auth and small shared UI state.",
+        "Build forms and tables with straightforward Bootstrap patterns."
+      ]
+    },
+    {
+      "title": "Auth Model",
+      "summary": "Unified User model with role separation and session-backed SPA auth.",
+      "points": [
+        "Student and company self-register.",
+        "Admin is seeded only, with no registration UI.",
+        "Role guards protect both API routes and frontend navigation."
+      ]
+    },
+    {
+      "title": "Async and Cache",
+      "summary": "Redis powers both Celery and caching.",
+      "points": [
+        "CSV export runs through a user-triggered async task.",
+        "Daily reminders and monthly reports run through scheduled jobs.",
+        "Cache read-heavy list and stats endpoints with explicit invalidation."
+      ]
+    },
+    {
+      "title": "Storage",
+      "summary": "Local-first storage keeps the demo simple.",
+      "points": [
+        "SQLite file for relational data.",
+        "Local uploads folder for resumes.",
+        "Local report and export folders for generated files."
+      ]
+    },
+    {
+      "title": "Guardrails",
+      "summary": "The core demo path is more important than polish.",
+      "points": [
+        "No optional features until the core checklist passes.",
+        "No complex calendar or notification system.",
+        "No styling work that blocks backend milestone progress."
+      ]
+    }
+  ],
+  "models": [
+    {
+      "name": "Role",
+      "purpose": "Defines admin, company, and student access groups.",
+      "key_fields": [
+        "id",
+        "name"
+      ],
+      "relations": "Many-to-many with User."
+    },
+    {
+      "name": "User",
+      "purpose": "Unified authentication record for all three roles.",
+      "key_fields": [
+        "id",
+        "email",
+        "password",
+        "active",
+        "fs_uniquifier",
+        "created_at"
+      ],
+      "relations": "One-to-one with StudentProfile or CompanyProfile; many-to-many with Role."
+    },
+    {
+      "name": "StudentProfile",
+      "purpose": "Stores student academic and placement-facing data.",
+      "key_fields": [
+        "user_id",
+        "full_name",
+        "roll_number",
+        "branch",
+        "graduation_year",
+        "cgpa",
+        "resume_path",
+        "is_blacklisted"
+      ],
+      "relations": "Belongs to User; one-to-many with Application and PlacementRecord."
+    },
+    {
+      "name": "CompanyProfile",
+      "purpose": "Stores company registration and approval details.",
+      "key_fields": [
+        "user_id",
+        "company_name",
+        "industry",
+        "location",
+        "website",
+        "hr_name",
+        "approval_status",
+        "is_blacklisted"
+      ],
+      "relations": "Belongs to User; one-to-many with PlacementDrive and PlacementRecord."
+    },
+    {
+      "name": "PlacementDrive",
+      "purpose": "Represents a company recruitment event or job opening.",
+      "key_fields": [
+        "company_id",
+        "job_title",
+        "job_description",
+        "eligible_branches",
+        "minimum_cgpa",
+        "eligible_year",
+        "application_deadline",
+        "status"
+      ],
+      "relations": "Belongs to CompanyProfile; one-to-many with Application."
+    },
+    {
+      "name": "Application",
+      "purpose": "Tracks a student's application to a placement drive.",
+      "key_fields": [
+        "student_id",
+        "drive_id",
+        "applied_at",
+        "status",
+        "interview_scheduled_at",
+        "result_updated_at"
+      ],
+      "relations": "Belongs to StudentProfile and PlacementDrive; one-to-one optional with PlacementRecord."
+    },
+    {
+      "name": "PlacementRecord",
+      "purpose": "Captures final successful selection details.",
+      "key_fields": [
+        "application_id",
+        "student_id",
+        "company_id",
+        "drive_id",
+        "offered_role",
+        "offered_ctc_lpa",
+        "joining_date"
+      ],
+      "relations": "Linked to Application, StudentProfile, CompanyProfile, and PlacementDrive."
+    },
+    {
+      "name": "ExportRequest",
+      "purpose": "Tracks asynchronous CSV export jobs.",
+      "key_fields": [
+        "user_id",
+        "export_type",
+        "status",
+        "file_path",
+        "created_at",
+        "completed_at"
+      ],
+      "relations": "Belongs to User."
+    }
+  ],
+  "api_groups": [
+    {
+      "group": "Auth",
+      "summary": "Registration, login, logout, and current session retrieval.",
+      "routes": [
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "purpose": "Authenticate and start session."
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/logout",
+          "purpose": "Clear the active session."
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/me",
+          "purpose": "Return current user and role info."
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/register/student",
+          "purpose": "Create student user and profile."
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/register/company",
+          "purpose": "Create company user and pending profile."
+        }
+      ]
+    },
+    {
+      "group": "Admin",
+      "summary": "Institute placement cell management endpoints.",
+      "routes": [
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "purpose": "Return top-level counts and recent records."
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/search",
+          "purpose": "Search companies, students, and drives."
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/admin/companies/:id/approval",
+          "purpose": "Approve or reject company registration."
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/admin/drives/:id/approval",
+          "purpose": "Approve or reject placement drives."
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/admin/users/:id/status",
+          "purpose": "Deactivate or blacklist a user."
+        }
+      ]
+    },
+    {
+      "group": "Company",
+      "summary": "Company dashboard, drives, and application management.",
+      "routes": [
+        {
+          "method": "GET",
+          "path": "/api/company/dashboard",
+          "purpose": "Return profile summary and drive stats."
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/company/profile",
+          "purpose": "Update company profile details."
+        },
+        {
+          "method": "POST",
+          "path": "/api/company/drives",
+          "purpose": "Create a new placement drive."
+        },
+        {
+          "method": "GET",
+          "path": "/api/company/drives/:id/applications",
+          "purpose": "List applicants for one drive."
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/company/applications/:id/status",
+          "purpose": "Update shortlist, interview, reject, or select state."
+        }
+      ]
+    },
+    {
+      "group": "Student",
+      "summary": "Student profile, drives, applications, and exports.",
+      "routes": [
+        {
+          "method": "GET",
+          "path": "/api/student/dashboard",
+          "purpose": "Return student dashboard summary."
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/student/profile",
+          "purpose": "Update student profile and resume path."
+        },
+        {
+          "method": "GET",
+          "path": "/api/student/applications",
+          "purpose": "Return application history."
+        },
+        {
+          "method": "POST",
+          "path": "/api/student/exports/applications",
+          "purpose": "Start CSV export for application history."
+        },
+        {
+          "method": "GET",
+          "path": "/api/student/exports",
+          "purpose": "Check export status and download info."
+        }
+      ]
+    },
+    {
+      "group": "Drives",
+      "summary": "Common browse and apply endpoints used by students.",
+      "routes": [
+        {
+          "method": "GET",
+          "path": "/api/drives",
+          "purpose": "List approved placement drives."
+        },
+        {
+          "method": "GET",
+          "path": "/api/drives/:id",
+          "purpose": "Return one drive detail."
+        },
+        {
+          "method": "POST",
+          "path": "/api/drives/:id/apply",
+          "purpose": "Submit a student application."
+        }
+      ]
+    }
+  ],
+  "acceptance_checks": [
+    {
+      "title": "Auth and routing",
+      "points": [
+        "Admin is seeded and can log in.",
+        "Student and company can self-register.",
+        "Each role lands on the right dashboard after login."
+      ]
+    },
+    {
+      "title": "Approval chain",
+      "points": [
+        "Company stays blocked until admin approval.",
+        "Drive stays hidden from students until admin approval.",
+        "Blacklisting cuts off new actions without erasing history."
+      ]
+    },
+    {
+      "title": "Student application flow",
+      "points": [
+        "Only eligible students can apply.",
+        "Duplicate application to the same drive is blocked.",
+        "Student sees live status in application history."
+      ]
+    },
+    {
+      "title": "Company review flow",
+      "points": [
+        "Company can review only its own applicants.",
+        "Company can shortlist, reject, schedule interview, and select.",
+        "Selected state creates or updates placement history."
+      ]
+    },
+    {
+      "title": "Async and cache",
+      "points": [
+        "CSV export runs through Celery and Redis.",
+        "Daily reminder and monthly report jobs are runnable locally.",
+        "Cached endpoints refresh correctly after writes."
+      ]
+    },
+    {
+      "title": "Submission readiness",
+      "points": [
+        "ER diagram can be derived from implemented schema.",
+        "API endpoint list is clear for the report.",
+        "The demo path can be shown live without optional features."
+      ]
+    }
+  ]
+}
