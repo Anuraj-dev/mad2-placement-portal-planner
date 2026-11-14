@@ -53,3 +53,7 @@ Edit `progress.json` by hand, then commit and push so the Vercel copy matches th
 The page shows neither `project.overall_percent` nor `project.current_day`. Day percentages come from the checkboxes, so a day's `percent` only applies to a day with no planned tasks.
 
 Checkboxes read only from browser storage, never from `done_tasks`. Ticks on one device do not show on another, and editing `done_tasks` does not tick a box. Keep the two in step by hand.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
